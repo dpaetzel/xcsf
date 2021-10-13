@@ -35,9 +35,11 @@
 #define RULE_TYPE_DGP (11) //!< Condition type and action type DGP
 #define RULE_TYPE_NEURAL (12) //!< Condition type and action type neural
 #define RULE_TYPE_NETWORK (13) //!< Condition type and prediction type neural
+#define COND_TYPE_UB_HYPERRECTANGLE (14) //!< Condition type unordered bound hyperrectangle
 
 #define COND_STRING_DUMMY ("dummy\0") //!< Dummy
 #define COND_STRING_HYPERRECTANGLE ("hyperrectangle\0") //!< Hyperrectangle
+#define COND_STRING_UB_HYPERRECTANGLE ("ub_hyperrectangle\0") //!< Unordered bound hyperrectangle
 #define COND_STRING_HYPERELLIPSOID ("hyperellipsoid\0") //!< Hyperellipsoid
 #define COND_STRING_NEURAL ("neural\0") //!< Neural
 #define COND_STRING_GP ("tree_gp\0") //!< Tree GP

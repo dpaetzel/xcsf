@@ -29,6 +29,7 @@ set(XCSF_SOURCES
     cond_gp.c
     cond_neural.c
     cond_rectangle.c
+    cond_ub_rectangle.c
     cond_ternary.c
     condition.c
     config.c
@@ -85,6 +86,7 @@ set(XCSF_HEADERS
     cond_gp.h
     cond_neural.h
     cond_rectangle.h
+    cond_ub_rectangle.h
     cond_ternary.h
     condition.h
     config.h

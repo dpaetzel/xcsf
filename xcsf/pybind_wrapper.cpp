@@ -830,6 +830,7 @@ class XCS
         cond_param_set_type_string(&xcs, type.c_str());
         switch (xcs.cond->type) {
             case COND_TYPE_HYPERRECTANGLE:
+            case COND_TYPE_UB_HYPERRECTANGLE:
             case COND_TYPE_HYPERELLIPSOID:
                 unpack_cond_csr(args);
                 break;

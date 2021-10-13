@@ -27,6 +27,7 @@
 #include "cond_gp.h"
 #include "cond_neural.h"
 #include "cond_rectangle.h"
+#include "cond_ub_rectangle.h"
 #include "cond_ternary.h"
 #include "rule_dgp.h"
 #include "rule_neural.h"
@@ -46,6 +47,9 @@ condition_set(const struct XCSF *xcsf, struct Cl *c)
             break;
         case COND_TYPE_HYPERRECTANGLE:
             c->cond_vptr = &cond_rectangle_vtbl;
+            break;
+        case COND_TYPE_UB_HYPERRECTANGLE:
+            c->cond_vptr = &cond_ub_rectangle_vtbl;
             break;
         case COND_TYPE_HYPERELLIPSOID:
             c->cond_vptr = &cond_ellipsoid_vtbl;
@@ -124,6 +128,9 @@ condition_type_as_int(const char *type)
     }
     if (strncmp(type, COND_STRING_HYPERRECTANGLE, 15) == 0) {
         return COND_TYPE_HYPERRECTANGLE;
+    }
+    if (strncmp(type, COND_STRING_UB_HYPERRECTANGLE, 18) == 0) {
+        return COND_TYPE_UB_HYPERRECTANGLE;
     }
     if (strncmp(type, COND_STRING_HYPERELLIPSOID, 15) == 0) {
         return COND_TYPE_HYPERELLIPSOID;
