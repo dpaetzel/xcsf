@@ -7,7 +7,7 @@
 
     defaultPackage.x86_64-linux =
       with import nixpkgs { system = "x86_64-linux"; };
-      let python = python39;
+      let python = python310;
       in python.pkgs.toPythonModule (stdenv.mkDerivation rec {
         # Note that as of 2021-12-15 this does not build from a checked-out git
         # repository due to the submodules. See
