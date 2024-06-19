@@ -8,7 +8,7 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
-      python = pkgs.python310;
+      python = pkgs.python311;
 
       # XCSF's build process expects the dSFMT library source to be available.
       # Therefore, we make it available.
@@ -73,7 +73,7 @@
 
           installPhase = ''
             mkdir -p $out/${python.sitePackages}
-            cp xcsf/xcsf.cpython-310-x86_64-linux-gnu.so $out/${python.sitePackages}
+            cp xcsf/xcsf.cpython-311-x86_64-linux-gnu.so $out/${python.sitePackages}
           '';
 
           meta = with pkgs.lib; {
@@ -97,7 +97,7 @@
       # from this repository's `xcsf` folder.
       devShell.${system} = pkgs.mkShell {
         buildInputs = [
-          (python.withPackages(ps: [xcsf]))
+          (python.withPackages(ps: [ps.gymnasium xcsf]))
         ];
 
         shellHook = ''
