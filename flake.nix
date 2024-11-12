@@ -1,3 +1,4 @@
+# THIS IS NOT USED ANY MORE. Instead, refer to `github:dpaetzel/overlays`.
 {
 
   inputs = {
@@ -137,16 +138,7 @@
               xcsfOverlay
             ];
           };
-          # For `nix repl` after `:lf .`.
-          # pkgs = import inputs.nixpkgs {
-          #   system = "x86_64-linux";
-          #   overlays = [
-          #     # overlays.overlays.mydefaults
-          #     outputs.overlays.xcsf
-          #   ];
-          # }
         in
-
         pkgs.mkShell {
           buildInputs = [
             (pkgs.mypython.withPackages (ps: [
