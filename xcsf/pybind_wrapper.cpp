@@ -56,6 +56,7 @@ extern "C" {
 #include "pybind_callback.h"
 #include "pybind_callback_checkpoint.h"
 #include "pybind_callback_earlystop.h"
+#include "pybind_callback_snapshot.h"
 #include "pybind_utils.h"
 
 /**
@@ -1003,8 +1004,16 @@ PYBIND11_MODULE(xcsf, m)
         m, "CheckpointCallback")
         .def(py::init<py::str, std::string, bool, int, bool>(),
              "Creates a callback for automatically saving XCSF.",
-             py::arg("monitor") = "train", py::arg("filename") = "xcsf.bin",
+             py::arg("monitor") = "train", py::arg("dirpath") = "checkpoints/",
              py::arg("save_best_only") = false, py::arg("save_freq") = 0,
+             py::arg("verbose") = true);
+
+    py::class_<SnapshotCallback, Callback,
+               std::unique_ptr<SnapshotCallback, py::nodelete>>(
+        m, "SnapshotCallback")
+        .def(py::init<std::string, int, bool>(),
+             "Creates a callback snapshotting XCSF.",
+             py::arg("dirpath") = "snapshots/", py::arg("save_freq") = 0,
              py::arg("verbose") = true);
 
     py::class_<XCS>(m, "XCS")

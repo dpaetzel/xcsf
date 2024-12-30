@@ -54,7 +54,7 @@
                   # pythonPackages = python-final;
 
                   pname = "xcsf";
-                  version = "1.3.1";
+                  version = "dev";
 
                   src = self;
 
@@ -90,13 +90,25 @@
                   ];
                   # TODO Add openmp?
 
-                  cmakeFlags = [
-                    "-DCMAKE_BUILD_TYPE=RELEASE"
+                  cmakeFlags =
+                    let
+                      boost = prev.boost.override {
+                        enablePython = true;
+                        python = python-prev.python;
+                        enableNumpy = true;
+                      };
+                    in
+                    [
+                      "-DCMAKE_BUILD_TYPE=RELEASE"
 
-                    "-DXCSF_PYLIB=ON"
-                    "-DENABLE_TESTS=ON"
-                    "-DPARALLEL=ON"
-                  ];
+                      "-DBoost_ROOT=${boost.dev}"
+                      # "-DBoost_DEBUG:BOOL=ON"
+                      "-DBoost_INCLUDE_DIR=${boost.dev}/include"
+
+                      "-DXCSF_PYLIB=ON"
+                      "-DENABLE_TESTS=ON"
+                      "-DPARALLEL=ON"
+                    ];
 
                   installPhase = ''
                     mkdir -p $out/${python-prev.python.sitePackages}
