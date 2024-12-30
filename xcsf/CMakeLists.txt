@@ -147,6 +147,10 @@ target_link_libraries(xcs PUBLIC m)
 if(PARALLEL AND OpenMP_FOUND)
   target_link_libraries(xcs PUBLIC OpenMP::OpenMP_C)
 endif()
+if(Boost_FOUND)
+  target_include_directories(xcs PUBLIC ${Boost_INCLUDE_DIRS})
+  target_link_libraries(xcs PUBLIC ${Boost_LIBRARIES})
+endif()
 
 # ##############################################################################
 # target: main - stand-alone binary execution
@@ -167,7 +171,8 @@ if(XCSF_PYLIB)
       pybind_utils.h
       pybind_callback.h
       pybind_callback_checkpoint.h
-      pybind_callback_earlystop.h)
+      pybind_callback_earlystop.h
+      pybind_callback_snapshot.h)
   pybind11_add_module(xcsf ${XCSF_PY_SOURCES})
   if(PARALLEL AND OpenMP_FOUND)
     target_link_libraries(xcsf PUBLIC OpenMP::OpenMP_CXX)
