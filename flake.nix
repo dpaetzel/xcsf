@@ -1,4 +1,3 @@
-# THIS IS NOT USED ANY MORE. Instead, refer to `github:dpaetzel/overlays`.
 {
 
   inputs = {
@@ -161,6 +160,11 @@
               ps.matplotlib
               ps.tkinter
               ps.tqdm
+
+              # For development and testing.
+              ps.ipython
+              ps.pytest
+              ps.scikit-learn
             ]))
           ];
 
