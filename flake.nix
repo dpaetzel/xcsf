@@ -138,6 +138,23 @@
     {
       overlays.xcsf = xcsfOverlay;
 
+      # A simple way so that I can do `nix build` in this directory.
+      # Inspect build output by either
+      # - reading the error message (if there is one) or,
+      # - if the build succeeded, look at the path that `result` points to and
+      #   do `nix log <thatpath>`
+      packages.x86_64-linux.default =
+        let
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [
+              overlays.overlays.mydefaults
+              xcsfOverlay
+            ];
+          };
+        in
+          pkgs.mypython.pkgs.xcsf;
+
       # You can test this by doing `nix develop path:path/to/this/repo`. Make
       # sure to change directory beforehand so Python doesn't attempt to import
       # from this repository's `xcsf` folder.
